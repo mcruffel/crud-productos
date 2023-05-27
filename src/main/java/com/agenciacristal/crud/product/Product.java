@@ -1,9 +1,5 @@
 package com.agenciacristal.crud.product;
-
 import java.time.LocalDate;
-import java.time.Period;
-
-
 import jakarta.persistence.*;
 @Entity
 @Table
@@ -17,24 +13,22 @@ public class Product {
     @Column(unique = true)
     private String name;
     private float price;
-    private LocalDate fecha;
-    @Transient
-    private int antiguedad;
+
+    private int stock;
 
     public Product() {
     }
 
-    public Product(Long id, String name, float price, LocalDate fecha) {
+    public Product(Long id, String name, float price, int stock) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.fecha = fecha;
+        this.stock = stock;
     }
 
-    public Product(String name, float price, LocalDate fecha) {
+    public Product(String name, float price) {
         this.name = name;
         this.price = price;
-        this.fecha = fecha;
     }
 
     public Long getId() {
@@ -61,19 +55,11 @@ public class Product {
         this.price = price;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public int getStock() {
+        return stock;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-
-    public int getAntiguedad() {
-        return Period.between(this.fecha,LocalDate.now()).getYears();
-    }
-
-    public void setAntiguedad(int antiguedad) {
-        this.antiguedad = antiguedad;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 }
